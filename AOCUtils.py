@@ -64,7 +64,7 @@ def loadInput(day):
         return content[0]
   else:
     try:
-      return [int(i) for i in content]
+      return [i for i in content]
     except Exception as e:
       # logger.error(e)
       return content
