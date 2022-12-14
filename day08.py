@@ -48,7 +48,6 @@ def isShorter(row, col, grid):
   tree = grid[row][col]
 
   if tree > max(grid[row][:col]) or tree > max(grid[row][col+1:]) or tree > max([x[col] for x in grid[:row]]) or tree > max([x[col] for x in grid[row+1:]]):
-    logger.info('{} is VISIBLE'.format(tree))
     return True
 
   return False
@@ -61,7 +60,7 @@ def solvePart1(input):
 
   for row in range(size):
     for col in range(size):
-      logger.info('{},{} | {}'.format(row, col, grid[row][col]))
+      logger.debug('{},{} | {}'.format(row, col, grid[row][col]))
       if isEdge(row, col, size-1):
         answer += 1
       elif isShorter(row, col, grid):
@@ -76,13 +75,13 @@ def viewDistance(tree, trees):
     if tree <= t:
       break
 
-  logger.info('{} => {} -- {}'.format(tree, trees, count))
+  logger.debug('{} => {} -- {}'.format(tree, trees, count))
 
   return count
 
 def getScenicScore(row, col, grid):
   tree = grid[row][col]
-  logger.info('{},{} - {}'.format(row, col, tree))
+  logger.debug('{},{} - {}'.format(row, col, tree))
 
   left = viewDistance(tree, grid[row][col-1::-1])
   right = viewDistance(tree, grid[row][col+1:])
@@ -90,7 +89,7 @@ def getScenicScore(row, col, grid):
   bottom = viewDistance(tree, [x[col] for x in grid[row+1:]])
 
   score = top * left * right * bottom
-  logger.info('{} * {} * {} * {} = {}'.format(top, left, right, bottom, score))
+  logger.debug('{} * {} * {} * {} = {}'.format(top, left, right, bottom, score))
 
   return score
 
