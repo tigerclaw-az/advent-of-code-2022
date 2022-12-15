@@ -2,6 +2,7 @@ import argparse
 import logging
 from time import time
 import os
+import sys
 logging.basicConfig(level=logging.INFO)
 
 logger = logging.getLogger('AOCUtils')
@@ -40,10 +41,11 @@ def loadInput(day):
   day = str(day)
 
   prefix = "input"
-  if TEST:
-    prefix = "test"
+  suffix = ""
+  if TEST or "pytest" in sys.modules.keys():
+    suffix = "_test"
 
-  filename = "{}{}.txt".format(prefix, day.zfill(2))
+  filename = "{}{}{}.txt".format(prefix, day.zfill(2), suffix)
   filepath = os.path.join("inputs", filename)
 
   logger.debug("Loading file: {}...".format(filepath))
