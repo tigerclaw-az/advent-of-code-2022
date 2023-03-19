@@ -45,9 +45,10 @@ def test_solvePart2():
 ######
 def solvePart1(input):
   answer = 0
-
+  is
   for line in input:
     logger.info(line)
+
 
   return answer
 
